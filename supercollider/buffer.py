@@ -28,7 +28,7 @@ class Buffer(object):
             self.id = id
 
     @classmethod
-    def alloc(cls, server, num_frames, num_channels=1, blocking=True):
+    def alloc(cls, server, num_frames, num_channels=1, blocking=True, id=0):
         """
         Create and allocate a new Buffer.
 
@@ -41,7 +41,7 @@ class Buffer(object):
         Returns:
             A new Buffer object.
         """
-        buf = Buffer(server, id=None)
+        buf = Buffer(server, id=id)
         buf.num_frames = num_frames
         buf.num_channels = num_channels
         buf.server._send_msg("/b_alloc", buf.id, num_frames, num_channels)
